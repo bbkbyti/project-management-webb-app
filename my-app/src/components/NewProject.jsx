@@ -2,8 +2,6 @@ import { useRef, useState } from 'react'
 import Input from './Input'
 
 
-// Next: 
-// add some validation for the input
 
 export default function NewProject({ onAdd, onCancel }) {
     const [error, setError] = useState(false);

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ProjectsSidebar from './components/ProjectsSidebar';
 import NewProject from './components/NewProject';
 import NoProjectSelected from './components/NoProjectSelected';
+import SelectedProject from './components/SelectedProject';
 
 
 function App() {
@@ -10,6 +11,15 @@ function App() {
     selectedProjectId: undefined,
     projects: []
   })
+
+  const handleSelectProject = (id) => {
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+      }
+    });
+  }
 
   const handleStartAddProject = () => {
     setProjectsState(prevState => {
@@ -34,7 +44,7 @@ function App() {
     setProjectsState(prevState => {
       const newProject = {
         ...projectData,
-        id: projectId // to generate a unique id
+        id: projectId
       }
       return {
         ...prevState,
@@ -47,7 +57,9 @@ function App() {
   // to check if a new project can be added:
   console.log(projectsState);
 
-  let content;
+  const selectedProject = projectsState.projects.find(project => project.id === projectsState.selectedProjectId)
+
+  let content = <SelectedProject project={selectedProject} />
 
   if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelProject} />
@@ -59,6 +71,7 @@ function App() {
     <main className='h-screen my-8 flex gap-8'>
       <ProjectsSidebar onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
+        onSelectProject={handleSelectProject}
       />
       {content}
     </main>
