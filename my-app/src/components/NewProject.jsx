@@ -3,8 +3,7 @@ import Input from './Input'
 
 
 // Next: 
-// collect values from user when entered into the form and validate them.
-// show error when invalid input added if valid input entered show it on the side bar
+// make the due date field a  date picker
 
 export default function NewProject({ onAdd }) {
     const title = useRef();
@@ -37,9 +36,9 @@ export default function NewProject({ onAdd }) {
                 </li>
             </menu>
             <div>
-                <Input ref={title} label="Title" />
+                <Input type='text' ref={title} label="Title" />
                 <Input ref={description} label="Description" textarea />
-                <Input ref={dueDate} label="Due Date" />
+                <Input type='date' ref={dueDate} label="Due Date" />
             </div>
         </div>
     )
