@@ -3,7 +3,7 @@ import Input from './Input'
 
 
 // Next: 
-// make the due date field a  date picker
+// add new projects to the side bar and close the form after the new project is added(save button clicked)
 
 export default function NewProject({ onAdd }) {
     const title = useRef();
